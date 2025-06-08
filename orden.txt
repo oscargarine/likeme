@@ -1,0 +1,123 @@
+el orden es:
+1. git init 										(iniciar git)
+
+2. crear carpeta "backend"
+3. ls												confirmar la ruta en que estamos posicionados (debería ser la raiz de todo el proyecto/repo)
+4. cd backend								moverse dentro de la carpeta "backend" y continuar desde ahí:
+
+5. npm init -y 								(instalamos el "package.json")
+
+6. npm i -D standard
+														"-D" significa que se instalarán como "dependencia de desarrollo"
+														"estandard" instala el paquete estandar "Javascript Standard Style" (formatedor de linter)
+
+7. 	npm install cors dotenv express pg 	*** SIMPLIFICACION DE LAS INSTALACIONES ***
+				*** La linea de arriba corresponde a:
+						npm i express							instalamos el servidor "express"
+
+						npm i nodemon
+														(OPCIONAL) "nodemon" es la dependencia para monitor el servidor contantemente.
+																		"nodemon" tiene más opciones y se puede usar para monitorar otras carpetas o archivos.
+																		"node --watch server.js" es la forma nativa para monitorear el server.
+
+						npm i dotenv							para acceder a las variables de entorno
+
+						npm i pg									instalamos el cliente de PostgreSQL para Node.js
+
+8. actualizamos el archivo "package.json"
+															cambiamos el type "commonjs" por "module"
+																	recordar que en este caso se debe usar ".mjs" como extensión para los módulos
+															debemos renombrar el "index.js" que viene por el "server.js"
+															configurar seccion "scripts" con "node --watch server.js" (o "nodemon server.js")
+															agregar la config para "esLintConfig" y "extends"
+
+9. crear archivo  ".env"				Aquí configuraremos nuestras variables de entorno. Este archivo no se sube a Github!
+10. configurar archivo ".env"		Este archivo no se sube a Github!
+			# SERVER
+			PORT = 3000
+			DB_HOST = localhost
+
+			# DATABASE
+			DB_USER = postgres
+			DB_PASSWORD = Alfa3210..
+			DB_PORT = 5432
+			DB_DATABASE = likeme
+
+11. Clonar archivo ".env" como ".env.local"
+			eliminar los valores de nuetras variables de entorno.
+
+12. dentro de la carpeta "backend", crear archivo ".gitignore"	Para indicar qué archivos o carpetas no deben ser subidas a Github
+			node_modules								Para que no se suba la carpeta "node_modules"
+			.env											Si queremos dejar las variables de entorno sin valores, se debe usar un archivo ".env.local"
+
+13. crear archivo "server.js" (dentro de la carpeta "backend")
+				importamos "express"
+				importamos dotenv/config
+				creamos la instancia de 'express'
+					const app = express()
+				cargamos las rutas definidas ('routes')
+				cargamos el/los middleware(s) (con "app.use()")
+				dejamos al servidor ecuchando en el puerto configurado, y le agregamos un mensaje "Server running on ..."
+
+13. npm run dev 							probamos levantar el servidor web (framework)
+
+crear archivo de configuracion de coneccion a la base de datos
+	/db/config.js
+
+creamos la carpeta "src/models"
+	aquí crearemos nuestros modelos
+
+creamos la carpeta "src/controllers"
+	aquí crearemos nuestros controladores
+		creamos las funciones del "controller"
+
+
+creamos la carpeta "routes" para crear nuestras rutas dentro de ésta:
+	creamos los archivos para las diferentes rutas, por ejemplo:
+		 "cancionesRoutes.js", "travelRoutes.js", "equipamientoRoutes.js", etc.
+			creamos las rutas de acceso a los "endpoints"
+
+"server.js" ( NO OLVIDAR AGREGAR/CARGAR LAS RUTAS)
+	debemos ir cargando las diferentes rutas que hallamos creado en la carpeta "routes"
+
+------------------------------------------------------------------------------------------------------------------------------
+npm install cors dotenv express pg
+
+.gitignore
+	node_modules
+	.env
+
+crear carpeta:
+	backend
+		db
+			schema
+				DDL.sql
+				DML.sql
+		config.js
+	routes
+		
+	src
+		controllers
+		models
+	.env 										(se crea al instalar "dotenv")
+	.env.local
+	server.js
+
+en la carpeta del backend:
+	npm init -y 	(generamos el package.json)
+
+instalar 'pg'
+	npm i pg
+instalar 'cors'
+
+crear servidor express
+crear archivo "config.js"
+crear archivo para el modelo
+crear archivo para el controlador (funcion)
+crear rutas para que se conecte el frontend
+
+1. Modelo					Queries a ejecutar en la BD
+2. Controlador		Funcionalidad (Lógica de negocio)
+3. Route					Rutas a los diferentes "Endpoints"
+4. "Server.js"		Cargamos las rutas de acceso a los "endpoints" definidos (con "app.use()")
+5. Vista "Vista" (en en el FrontEnd con React, HTML, Angular, Vue, etc.)
