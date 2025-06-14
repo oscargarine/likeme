@@ -1,4 +1,4 @@
-import { getPostsModel, createPostModel, deletePostModel } from '../models/postsModel.js'
+import { getPostsModel, createPostModel, deletePostModel, updatePostLikesModel } from '../models/postsModel.js'
 
 export const getAllPosts = async (req, res) => {
   try {
@@ -30,8 +30,13 @@ export const updatePostLikes = async (req, res) => {
   }
 
   try {
-    const postLike = await updatePostLikes(id)
-    res.json(postLike)
+    const postLike = await updatePostLikesModel(id)
+    // res.json(postLike)
+    res.status(200).json({
+      message: 'Like actualizado',
+      post: postLike
+    })
+    console.log('Like actualizado')
   } catch (error) {
     res.json({ error: 'Error al actualizar' })
     console.error(error)
@@ -47,7 +52,12 @@ export const deletePost = async (req, res) => {
 
   try {
     const post = await deletePostModel(id)
-    res.json(post)
+    // res.json(post)
+    res.status(200).json({
+      message: 'Like actualizado',
+      post: post
+    })
+    console.log('Like actualizado')
   } catch (error) {
     res.json({ error: 'No se puede borrar la publicación' })
     console.error(error)

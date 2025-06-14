@@ -23,11 +23,12 @@ export const createPostModel = async (titulo, img, descripcion) => {
 // likes = likes + 1 es la funcion más eficiente para conteo multiple
 export const updatePostLikesModel = async (id) => {
   const sqlQuery = {
-    text: 'UPDATE posts SET likes = likes +1 WHERE id = $1 RETURNIG *',
+    text: 'UPDATE posts SET likes = likes +1 WHERE id = $1 RETURNING *',
     values: [id]
   }
 
   const result = await pool.query(sqlQuery)
+  console.log('Like agregado', result)
   return result.rows[0]
 }
 
